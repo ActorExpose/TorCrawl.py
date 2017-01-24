@@ -49,6 +49,8 @@ from modules.crawler import crawler
 from modules.extractor import extractor
 from modules.checker import *
 
+from gooey import Gooey, GooeyParser
+
 # Set socket and connection with TOR network
 def connectTor():
     try:
@@ -64,7 +66,7 @@ def connectTor():
       e = sys.exc_info()[0]
       print( "Error: %s" % e +"\n## Can't establish connection with TOR")
 
-
+@Gooey(program_name='TorCrawl.py')
 def main():
     # Initialize nececery variables
     inputFile = outputFile = ''
@@ -72,12 +74,13 @@ def main():
     cdepth = 1
 
     # Get arguments with argparse
-    parser = argparse.ArgumentParser(description="TorCrawl.py is a python script to crawl and extract (regular or onion) webpages through TOR network.")
+    parser = GooeyParser(description="TorCrawl.py is a python script to crawl and extract (regular or onion) webpages through TOR network.")
     # General
     parser.add_argument('-v',
                         '--verbose', 
                         action='store_true', 
-                        help='Show more informations about the progress')
+                        help='Show more informations about the progress',
+                        default=True)
     parser.add_argument('-u',
                         '--url', 
                         required=True, 
@@ -93,10 +96,12 @@ def main():
                         help='Extract page\'s code to terminal or file.')
     parser.add_argument('-i',
                         '--input', 
-                        help='Input file with URL(s) (seperated by line)')
+                        help='Input file with URL(s) (seperated by line)',
+                        widget='FileChooser')
     parser.add_argument('-o',
                         '--output', 
-                        help='Output page(s) to file(s) (for one page)')
+                        help='Output page(s) to file(s) (for one page)',
+                        widget='FileSaver')
     # Crawl
     parser.add_argument('-c',
                         '--crawl', 
@@ -104,12 +109,14 @@ def main():
                         help='Crawl website (Default output on /links.txt)')
     parser.add_argument('-d',
                         '--cdepth', 
-                        help='Set depth of crawl\'s travel (Default: 1)')
+                        help='Set depth of crawl\'s travel',
+                        default=1)
     #parser.add_argument('-z','--exclusions' help='Paths that you don\'t want to include')
     #parser.add_argument('-s','--simultaneous' help='How many pages to visit at the same time')
     parser.add_argument('-p',
                         '--pause', 
-                        help='The length of time the crawler will pause')
+                        help='The length of time the crawler will pause',
+                        default=0)
     parser.add_argument('-l',
                         '--log', 
                         action='store_true', 
