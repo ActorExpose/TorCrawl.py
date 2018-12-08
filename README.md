@@ -13,7 +13,10 @@ TorCrawl.py is a python script to crawl and extract (regular or onion) webpages 
 - **Warning:** Crawling is not illegal, but violating copyright is. It’s always best to double check a website’s T&C before crawling them. Some websites set up what’s called robots.txt to tell crawlers not to visit those pages. This crawler will allow you to go around this, but we always recommend respecting robots.txt.
 - **Keep in mind:** Extracting and crawling through TOR network take some time. That's normal behaviour; you can find more information [here](https://www.torproject.org/docs/faq.html.en#WhySlow). 
 
-### What make it simple?
+<p align="center"><img src ="https://media.giphy.com/media/RmfzOLuCJTApa/giphy.gif"></p>
+
+### What makes it simple?
+
 If you are a terminal maniac you know that things have to be simple and clear. Passing output into other tools is necessary and accuracy is the key.
 
 With a single argument you can read an .onion webpage or a regular one through TOR Network and using pipes you can pass the output at any other tool you prefer.
@@ -47,6 +50,7 @@ arg | Long | Description
 -v  |--verbose| Show more informations about the progress 
 -u  |--url *.onion| URL of Webpage to crawl or extract
 -w  |--without| Without the use of Relay TOR
+-f  |--folder| The directory which will contain the generated files ([@guyo13](https://www.github.com/guyo13))
 **Extract**: | | 
 -e  |--extract| Extract page's code to terminal or file. (Default: Terminal)
 -i  |--input filename| Input file with URL(s) (seperated by line)
@@ -140,6 +144,9 @@ $ python torcrawl.py -u http://www.github.com/ -c -e | grep '</html>'
 </html>
 ...
 ```
+
+## Demo:
+![peek 2018-12-08 16-11](https://user-images.githubusercontent.com/9204902/49687660-f72f8280-fb0e-11e8-981e-1bbeeac398cc.gif)
 
 ## Contributors:
 Feel free to contribute on this project! Just fork it, make any change on your fork and add a pull request on current branch! Any advice, help or questions will be great for me :)

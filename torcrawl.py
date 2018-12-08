@@ -68,13 +68,15 @@ def connectTor():
 
 @Gooey(program_name='TorCrawl.py')
 def main():
-    # Initialize nececery variables
+    # Initialize neccecery variables
     inputFile = outputFile = ''
     cpause = 0
     cdepth = 1
 
     # Get arguments with argparse
+
     parser = GooeyParser(description="TorCrawl.py is a python script to crawl and extract (regular or onion) webpages through TOR network.")
+
     # General
     parser.add_argument('-v',
                         '--verbose', 
@@ -89,6 +91,7 @@ def main():
                         '--without', 
                         action='store_true', 
                         help='Without the use of Relay TOR')
+    
     # Extract
     parser.add_argument('-e',
                         '--extract', 
@@ -121,6 +124,9 @@ def main():
                         '--log', 
                         action='store_true', 
                         help='A save log will let you see which URLs were visited')
+    parser.add_argument('-f',
+                        '--folder',
+                        help='The root directory which will contain the generated files')
 
     args = parser.parse_args()
 
@@ -144,7 +150,10 @@ def main():
     # Canon/ion of website and create path for output 
     if len(args.url) > 0:
       website = urlcanon(args.url, args.verbose)
-      outpath = folder(website, args.verbose)
+      if args.folder is not None:
+        outpath = folder(args.folder, args.verbose)
+      else:
+        outpath = folder(website, args.verbose)
 
     if args.crawl == True:
       lst = crawler(website, cdepth, args.pause, outpath, args.log, args.verbose)
