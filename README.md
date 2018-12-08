@@ -1,11 +1,11 @@
 <!--
-  Title: TorCrawl.py
-  Description: a python script to crawl and extract (regular or onion) webpages through TOR network. 
+  Title: TorCrawl.py - GUI Branch
+  Description: a python script with graphical user interface based on Gooey to crawl and extract (regular or onion) webpages through TOR network. 
   Author: MikeMeliz
   -->
-# TorCrawl.py
+# TorCrawl.py - GUI /w [Gooey](https://github.com/chriskiehl/Gooey)
 
-[![Version](https://img.shields.io/badge/version-1.0-green.svg?style=plastic)]() [![license](https://img.shields.io/github/license/MikeMeliz/TorCrawl.py.svg?style=plastic)]()
+[![Version](https://img.shields.io/badge/version-0.6-orange.svg?style=plastic)]() [![license](https://img.shields.io/github/license/MikeMeliz/TorCrawl.py.svg?style=plastic)]()
 
 ## Basic Information:
 TorCrawl.py is a python script to crawl and extract (regular or onion) webpages through TOR network. 
@@ -15,27 +15,21 @@ TorCrawl.py is a python script to crawl and extract (regular or onion) webpages 
 
 <p align="center"><img src ="https://media.giphy.com/media/RmfzOLuCJTApa/giphy.gif"></p>
 
-### What makes it simple?
-
-If you are a terminal maniac you know that things have to be simple and clear. Passing output into other tools is necessary and accuracy is the key.
-
-With a single argument you can read an .onion webpage or a regular one through TOR Network and using pipes you can pass the output at any other tool you prefer.
-
-![ExtractAndGrep](https://cloud.githubusercontent.com/assets/9204902/21080715/c34511ca-bfbe-11e6-9fec-230e6430d5dc.png)
-
-If you want to crawl the links of a webpage use the `-c` and **BAM** you got on a file all the inside links. You can even use `-d` to crawl them and so on. As far, there is also the necessary argument `-p` to wait some seconds before the next crawl.
-
-![CrawlwDepthwPause](https://cloud.githubusercontent.com/assets/9204902/21080526/f2b80908-bfb9-11e6-8bc0-fd3eebe182cc.png)
-
-
 ## Installation:
-To install this script, you need to clone that repository:
+To install this beta branch, you need to clone that repository:
 
-`git clone https://github.com/MikeMeliz/TorCrawl.py.git`
+`git clone -b guidev https://github.com/MikeMeliz/TorCrawl.py.git`
 
-You'll also need BeautifulSoup:
+You'll also need Socks, BeautifulSoup, [Gooey](https://github.com/chriskiehl/Gooey):
 
-`pip install beautifulsoup`
+`pip install socks beautifulsoup Gooey`
+
+**Note:** Python 2 users must manually install WxPython! Please, check [wxPython website](http://www.wxpython.org/download.php).
+```
+pip install -U \
+    -f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-16.04 \
+    wxPython
+```
 
 Of course, the TOR Hidden Service is needed:
 
@@ -61,95 +55,12 @@ arg | Long | Description
 -p  |--pause| The length of time the crawler will pause (Default: 0)
 -l  |--log| A save log will let you see which URLs were visited
 
-## Usage:
-
-### As Extractor:
-To just extract a single webpage to terminal:
-
-```
-$ python torcrawl.py -u http://www.github.com
-<!DOCTYPE html>
-...
-</html>
-```
-
-Extract into a file (github.htm) without the use of TOR:
-
-```
-$ python torcrawl.py -w -u http://www.github.com -o github.htm
-## File created on /script/path/github.htm
-```
-
-Extract to terminal and find only the line with google-analytics:
-
-```
-$ python torcrawl.py -u http://www.github.com | grep 'google-analytics'
-    <meta name="google-analytics" content="UA-*******-*">
-```
-
-Extract a set of webpages (imported from file) to terminal:
-
-```
-$ python torcrawl.py -i links.txt
-...
-```
-
-
-### As Crawler:
-Crawl the links of the webpage without the use of TOR,
-also show verbose output (really helpfull):
-
-```
-$ python torcrawl.py -v -w -u http://www.github.com/ -c
-## URL: http://www.github.com/
-## Your IP: *.*.*.*
-## Crawler Started from http://www.github.com/ with step 1 and wait 0
-## Step 1 completed with: 11 results
-## File created on /script/path/links.txt
-```
-
-Crawl the webpage with depth 2 (2 clicks) and 5 seconds waiting before crawl the next page:
-
-```
-$ python torcrawl.py -v -u http://www.github.com/ -c -d 2 -p 5
-## TOR is ready!
-## URL: http://www.github.com/
-## Your IP: *.*.*.*
-## Crawler Started from http://www.github.com with step 2 and wait 5
-## Step 1 completed with: 11 results
-## Step 2 completed with: 112 results
-## File created on /script/path/links.txt
-```
-### As Both:
-You can crawl a page and also extract the webpages into a folder with a single command:
-
-```
-$ python torcrawl.py -v -u http://www.github.com/ -c -d 2 -p 5 -e
-## TOR is ready!
-## URL: http://www.github.com/
-## Your IP: *.*.*.*
-## Crawler Started from http://www.github.com with step 1 and wait 5
-## Step 1 completed with: 11 results
-## File created on /script/path/FolderName/index.htm
-## File created on /script/path/FolderName/projects.html
-## ...
-```
-***Note:*** *The default (and only for now) file for crawler's links is the `links.txt` document. Also, to extract right after the crawl you have to give `-e` argument*
-
-With the same logic you can parse all these pages to grep (for example) and search for a specific text:
-
-```
-$ python torcrawl.py -u http://www.github.com/ -c -e | grep '</html>'
-</html>
-</html>
-...
-```
-
 ## Demo:
-![peek 2018-12-08 16-11](https://user-images.githubusercontent.com/9204902/49687660-f72f8280-fb0e-11e8-981e-1bbeeac398cc.gif)
+![default](https://user-images.githubusercontent.com/9204902/49688368-7c1f9980-fb19-11e8-851a-5c72ea916d42.png)
+
 
 ## Contributors:
-Feel free to contribute on this project! Just fork it, make any change on your fork and add a pull request on current branch! Any advice, help or questions will be great for me :)
+This is a beta version with graphical user interface, please consider the contribution into master brnach, but still feel free on this too! Just fork it, make any change on your fork and add a pull request on current branch! Any advice, help or questions will be great for me :)
 
 ## License:
 “GPL” stands for “General Public License”. Using the GNU GPL will require that all the released improved versions be free software. [source & more](https://www.gnu.org/licenses/gpl-faq.html)

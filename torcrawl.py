@@ -49,6 +49,7 @@ from modules.crawler import crawler
 from modules.extractor import extractor
 from modules.checker import *
 
+# Gooey for GUI
 from gooey import Gooey, GooeyParser
 
 # Set socket and connection with TOR network
