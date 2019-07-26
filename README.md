@@ -5,7 +5,7 @@
   -->
 # TorCrawl.py - GUI /w [Gooey](https://github.com/chriskiehl/Gooey)
 
-[![Version](https://img.shields.io/badge/version-0.6-orange.svg?style=plastic)]() [![license](https://img.shields.io/github/license/MikeMeliz/TorCrawl.py.svg?style=plastic)]()
+[![Version](https://img.shields.io/badge/version-0.3-orange.svg?style=plastic)]() [![license](https://img.shields.io/github/license/MikeMeliz/TorCrawl.py.svg?style=plastic)]()
 
 ## Basic Information:
 TorCrawl.py is a python script to crawl and extract (regular or onion) webpages through TOR network. 
@@ -60,7 +60,7 @@ arg | Long | Description
 
 
 ## Contributors:
-This is a beta version with graphical user interface, please consider the contribution into master brnach, but still feel free on this too! Just fork it, make any change on your fork and add a pull request on current branch! Any advice, help or questions will be great for me :)
+This is a beta version with [Gooey](https://github.com/chriskiehl/Gooey)'s GUI, please consider the contribution into master branch, but still feel free on this too! Just fork it, make any change on your fork and add a pull request on current branch! Any advice, help or questions will be great :)
 
 ## License:
 “GPL” stands for “General Public License”. Using the GNU GPL will require that all the released improved versions be free software. [source & more](https://www.gnu.org/licenses/gpl-faq.html)
